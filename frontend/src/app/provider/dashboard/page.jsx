@@ -1,22 +1,23 @@
 "use client";
 import { useSelector } from "react-redux";
+import ProviderDashboardLayout from "@/components/provider/ProviderDashboardLayout";
 
 export default function ProviderDashboard() {
   const { user, profile } = useSelector((state) => state.auth);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Provider Dashboard
-        </h1>
-        {user && (
-          <p className="text-gray-600">
-            Welcome, {profile?.companyName || user.email}
-          </p>
-        )}
-      </div>
-    </div>
+    <ProviderDashboardLayout>
+      <h1 className="text-4xl font-bold text-card-foreground mb-4">
+        Dashboard
+      </h1>
+      {user && (
+        <p className="text-muted-foreground mb-8">
+          Welcome back, {profile?.companyName || user.email}
+        </p>
+      )}
+      
+      {/* Dashboard content will be added in next steps */}
+    </ProviderDashboardLayout>
   );
 }
 

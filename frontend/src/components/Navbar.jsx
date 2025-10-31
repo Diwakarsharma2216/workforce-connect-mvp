@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { HiMenu } from "react-icons/hi";
-import { User, LogOut, ChevronDown } from "lucide-react";
+import { User, LogOut, ChevronDown, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { logoutUser } from "@/store/slices/authSlice";
 
@@ -39,6 +39,20 @@ export default function Navbar() {
     dispatch(logoutUser());
     setUserMenuOpen(false);
     router.push("/");
+  };
+
+  // Handle dashboard navigation
+  const handleDashboard = () => {
+    setUserMenuOpen(false);
+    if (user?.role === "company") {
+      router.push("/company/dashboard");
+    } else if (user?.role === "provider") {
+      router.push("/provider/dashboard");
+    } else if (user?.role === "craftworker") {
+      router.push("/craftworker/dashboard");
+    } else {
+      router.push("/");
+    }
   };
 
   // Handle profile navigation
@@ -119,6 +133,13 @@ export default function Navbar() {
                   </div>
                   <div className="py-1">
                     <button
+                      onClick={handleDashboard}
+                      className="w-full flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent transition-colors"
+                    >
+                      <LayoutDashboard className="w-4 h-4" />
+                      Dashboard
+                    </button>
+                    <button
                       onClick={handleProfile}
                       className="w-full flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent transition-colors"
                     >
@@ -180,6 +201,13 @@ export default function Navbar() {
                     <p className="text-xs text-muted-foreground">{user?.email}</p>
                   </div>
                 </div>
+                <button
+                  onClick={handleDashboard}
+                  className="flex items-center gap-2 px-4 py-2 text-left text-card-foreground hover:bg-accent rounded-lg transition-colors"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  Dashboard
+                </button>
                 <button
                   onClick={handleProfile}
                   className="flex items-center gap-2 px-4 py-2 text-left text-card-foreground hover:bg-accent rounded-lg transition-colors"

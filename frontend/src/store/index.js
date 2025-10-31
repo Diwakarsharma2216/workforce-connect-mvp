@@ -2,6 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import authReducer from './slices/authSlice';
+import companyReducer from './slices/companySlice';
+import jobReducer from './slices/jobSlice';
+import applicantReducer from './slices/applicantSlice';
 
 // Persist configuration for auth slice
 const authPersistConfig = {
@@ -16,6 +19,9 @@ const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    company: companyReducer,
+    job: jobReducer,
+    applicant: applicantReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
