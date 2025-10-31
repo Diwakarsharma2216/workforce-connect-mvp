@@ -102,6 +102,37 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
+// Async thunk for getting user profile
+export const getUserProfile = createAsyncThunk(
+  'auth/getProfile',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get('/auth/me');
+      const data = response.data;
+
+      if (!data.success) {
+        return rejectWithValue(data.message || 'Failed to get user profile');
+      }
+
+      // Update tokens if provided (though they shouldn't change)
+      if (data.data?.accessToken) {
+        localStorage.setItem('accessToken', data.data.accessToken);
+      }
+      if (data.data?.refreshToken) {
+        localStorage.setItem('refreshToken', data.data.refreshToken);
+      }
+
+      return data.data;
+    } catch (error) {
+      // Handle axios errors
+      if (error.response?.data) {
+        return rejectWithValue(error.response.data.message || 'Failed to get user profile');
+      }
+      return rejectWithValue(error.message || 'An error occurred. Please try again.');
+    }
+  }
+);
+
 const initialState = {
   user: null,
   profile: null,
@@ -202,6 +233,23 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
         state.error = null;
         state.errors = [];
+      });
+
+    // Get user profile reducers
+    builder
+      .addCase(getUserProfile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getUserProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.profile = action.payload.profile;
+        state.error = null;
+      })
+      .addCase(getUserProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
