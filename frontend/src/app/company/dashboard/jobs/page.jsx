@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CompanyDashboardLayout from "@/components/company/CompanyDashboardLayout";
 import { listJobs, createJob, updateJob, deleteJob } from "@/store/slices/jobSlice";
-import { Plus, Loader2, Edit2, Trash2, Briefcase, Calendar, MapPin, Users, X } from "lucide-react";
+import { Plus, Loader2, Edit2, Trash2, Briefcase, Calendar, MapPin, Users, X, Eye } from "lucide-react";
+import Link from "next/link";
 
 export default function CompanyJobs() {
   const dispatch = useDispatch();
@@ -276,12 +277,18 @@ export default function CompanyJobs() {
                 </div>
               )}
               <div className="flex gap-2 mt-4">
+                <Link
+                  href={`/company/dashboard/jobs/${job._id}`}
+                  className="flex-1 flex items-center justify-center gap-2 px-2 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                >
+                  <Eye className="w-4 h-4" />
+                 
+                </Link>
                 <button
                   onClick={() => handleEdit(job)}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-card border border-border rounded-lg hover:bg-accent transition-colors"
+                  className="flex items-center justify-center gap-2 px-4 py-2 bg-card border border-border rounded-lg hover:bg-accent transition-colors"
                 >
                   <Edit2 className="w-4 h-4" />
-                  Edit
                 </button>
                 <button
                   onClick={() => handleDelete(job._id)}
