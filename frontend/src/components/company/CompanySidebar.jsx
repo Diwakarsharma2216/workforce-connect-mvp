@@ -1,5 +1,5 @@
 "use client";
-import { LayoutDashboard, Briefcase, FileText, Users, Settings } from "lucide-react";
+import { LayoutDashboard, Briefcase, FileText, Users } from "lucide-react";
 import DashboardSidebar from "@/components/DashboardSidebar";
 
 const companyMenuItems = [
@@ -22,11 +22,6 @@ const companyMenuItems = [
     title: "Profile",
     href: "/company/dashboard/profile",
     icon: <FileText className="w-5 h-5" />,
-  },
-  {
-    title: "Settings",
-    href: "/company/dashboard/settings",
-    icon: <Settings className="w-5 h-5" />,
   },
 ];
 

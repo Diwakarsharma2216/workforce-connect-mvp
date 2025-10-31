@@ -163,6 +163,50 @@ const updateApplicationStatus = async (req, res) => {
   }
 };
 
+// GET /api/jobs/public - list all open jobs (public endpoint for craftworkers)
+const listPublicJobs = async (req, res) => {
+  try {
+    const { location, skills, status } = req.query;
+    const filter = { status: status || 'open' }; // Only show open jobs by default
+
+    // Optional filters
+    if (location) {
+      filter.location = new RegExp(location, 'i'); // Case-insensitive search
+    }
+    if (skills) {
+      const skillsArray = Array.isArray(skills) ? skills : [skills];
+      filter.skillsRequired = { $in: skillsArray };
+    }
+
+    const jobs = await Job.find(filter)
+      .populate('companyId', 'companyName industry location contactPerson')
+      .sort({ createdAt: -1 })
+      .limit(100); // Limit to prevent overload
+
+    return res.json({ success: true, data: jobs });
+  } catch (err) {
+    console.error('List public jobs error:', err);
+    return res.status(500).json({ success: false, message: 'Failed to fetch jobs' });
+  }
+};
+
+// GET /api/jobs/:id/public - get single job (public endpoint for craftworkers)
+const getPublicJob = async (req, res) => {
+  try {
+    const job = await Job.findById(req.params.id)
+      .populate('companyId', 'companyName industry location contactPerson phone description');
+
+    if (!job) {
+      return res.status(404).json({ success: false, message: 'Job not found' });
+    }
+
+    return res.json({ success: true, data: job });
+  } catch (err) {
+    console.error('Get public job error:', err);
+    return res.status(400).json({ success: false, message: 'Invalid job id' });
+  }
+};
+
 module.exports = {
   createJob,
   listJobs,
@@ -170,5 +214,7 @@ module.exports = {
   updateJob,
   deleteJob,
   listApplicants,
-  updateApplicationStatus
+  updateApplicationStatus,
+  listPublicJobs,
+  getPublicJob
 };

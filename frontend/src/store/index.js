@@ -5,6 +5,12 @@ import authReducer from './slices/authSlice';
 import companyReducer from './slices/companySlice';
 import jobReducer from './slices/jobSlice';
 import applicantReducer from './slices/applicantSlice';
+import craftworkerReducer from './slices/craftworkerSlice';
+import publicJobReducer from './slices/publicJobSlice';
+import applicationReducer from './slices/applicationSlice';
+import providerReducer from './slices/providerSlice';
+import providerApplicationReducer from './slices/providerApplicationSlice';
+import providerJobReducer from './slices/providerJobSlice';
 
 // Persist configuration for auth slice
 const authPersistConfig = {
@@ -22,6 +28,12 @@ export const store = configureStore({
     company: companyReducer,
     job: jobReducer,
     applicant: applicantReducer,
+    craftworker: craftworkerReducer,
+    publicJob: publicJobReducer,
+    application: applicationReducer,
+    provider: providerReducer,
+    providerApplication: providerApplicationReducer,
+    providerJob: providerJobReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

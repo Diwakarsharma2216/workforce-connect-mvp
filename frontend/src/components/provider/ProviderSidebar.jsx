@@ -1,5 +1,5 @@
 "use client";
-import { LayoutDashboard, Briefcase, FileText, Users, Settings } from "lucide-react";
+import { LayoutDashboard, Briefcase, FileText, Users, ClipboardList } from "lucide-react";
 import DashboardSidebar from "@/components/DashboardSidebar";
 
 const providerMenuItems = [
@@ -19,14 +19,14 @@ const providerMenuItems = [
     icon: <Briefcase className="w-5 h-5" />,
   },
   {
+    title: "Applications",
+    href: "/provider/dashboard/applications",
+    icon: <ClipboardList className="w-5 h-5" />,
+  },
+  {
     title: "Profile",
     href: "/provider/dashboard/profile",
     icon: <FileText className="w-5 h-5" />,
-  },
-  {
-    title: "Settings",
-    href: "/provider/dashboard/settings",
-    icon: <Settings className="w-5 h-5" />,
   },
 ];
 
