@@ -53,7 +53,7 @@ const register = async (req, res) => {
           description: roleData.description
         });
         break;
-      
+
       case 'provider':
         profile = new CraftProvider({
           userId: user._id,
@@ -64,7 +64,7 @@ const register = async (req, res) => {
           description: roleData.description
         });
         break;
-      
+
       case 'craftworker':
         profile = new Craftworker({
           userId: user._id,
@@ -80,7 +80,7 @@ const register = async (req, res) => {
           bio: roleData.bio
         });
         break;
-      
+
       default:
         return res.status(400).json({
           success: false,
@@ -222,7 +222,7 @@ const refreshToken = async (req, res) => {
 
     // Verify refresh token
     const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
-    
+
     // Check if user still exists and is active
     const user = await User.findById(decoded.userId);
     if (!user || !user.isActive) {
