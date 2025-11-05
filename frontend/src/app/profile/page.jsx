@@ -97,7 +97,7 @@ export default function ProfilePage() {
           <div className="card">
             <h3 className="text-lg font-semibold text-card-foreground mb-4 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-primary" />
-              Provider Information
+              Agency Information
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>

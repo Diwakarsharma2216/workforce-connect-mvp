@@ -13,7 +13,7 @@ const ROLE_INFO = {
     description: "Post jobs and hire faster",
   },
   provider: {
-    title: "Provider",
+    title: "Agency",
     icon: <Users className="w-6 h-6" />,
     description: "Manage teams and assign work",
   },

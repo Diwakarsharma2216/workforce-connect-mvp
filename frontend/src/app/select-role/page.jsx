@@ -6,6 +6,26 @@ import { BriefcaseBusiness, Users, Hammer, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { loginUser, clearError } from "@/store/slices/authSlice";
 
+// Toggle between hardcoded credentials and real credentials
+// Set to true to auto-fill credentials, false to use manual input
+const USE_HARDCODED_CREDENTIALS = true; // Change to false for real credentials
+
+// Hardcoded credentials for each role (for development/testing)
+const HARDCODED_CREDENTIALS = {
+  company: {
+    email: "sarah.johnson@andersoncarpentry.com",
+    password: "Diwa@1234", // Update this with the actual password
+  },
+  provider: {
+    email: "info@probuildcontractors.com",
+    password: "Diwa@1234", // Update this with the actual password
+  },
+  craftworker: {
+    email: "ethan.miller@workmail.com",
+    password: "Diwa@1234", // Update this with the actual password
+  },
+};
+
 const ROLES = [
   {
     title: "Company",
@@ -15,7 +35,7 @@ const ROLES = [
     color: "from-[#2563eb] to-[#4338CA]",
   },
   {
-    title: "Provider",
+    title: "Agency",
     roleKey: "provider",
     icon: <Users className="w-10 h-10 mb-2" />,
     description: "Manage teams and assign work",
@@ -42,6 +62,23 @@ export default function SelectRolePage() {
   const handleRoleSelect = (role) => {
     setSelectedRole(role);
     dispatch(clearError());
+    
+    // Auto-fill credentials only if USE_HARDCODED_CREDENTIALS is true
+    if (USE_HARDCODED_CREDENTIALS) {
+      const credentials = HARDCODED_CREDENTIALS[role.roleKey];
+      if (credentials) {
+        setEmail(credentials.email);
+        setPassword(credentials.password);
+      } else {
+        // Clear fields if no hardcoded credentials for this role
+        setEmail("");
+        setPassword("");
+      }
+    } else {
+      // Clear fields for real credentials input
+      setEmail("");
+      setPassword("");
+    }
   };
 
   const handleBack = () => {

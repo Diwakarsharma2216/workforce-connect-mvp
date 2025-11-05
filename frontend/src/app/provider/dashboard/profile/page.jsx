@@ -73,8 +73,8 @@ export default function ProviderProfile() {
     <ProviderDashboardLayout>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-4xl font-bold text-card-foreground mb-2">Provider Profile</h1>
-          <p className="text-muted-foreground">Manage your provider profile information</p>
+          <h1 className="text-4xl font-bold text-card-foreground mb-2">Agency Profile</h1>
+          <p className="text-muted-foreground">Manage your agency profile information</p>
         </div>
         {!isEditing && (
           <button

@@ -10,7 +10,7 @@ const features = [
   },
   {
     icon: <Users className="w-8 h-8 text-brand-blue" />,
-    title: "For Providers",
+    title: "For Agencies",
     description:
       "Manage teams, assign craftsmen, and track work progress in one dashboard. Simple and transparent.",
   },
