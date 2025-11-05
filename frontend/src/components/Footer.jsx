@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Brand */}
         <div className="flex items-center gap-2 text-lg font-extrabold text-primary">
-          <span>WorkForce-Mangement</span>
+          <span>Turnaround Chaser</span>
           <span className="text-muted-foreground font-normal text-xs ml-2">&copy; {new Date().getFullYear()} job-portal. All rights reserved.</span>
         </div>
         {/* Center: Links */}

@@ -84,7 +84,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <span className="text-base sm:text-lg md:text-xl font-extrabold tracking-tight text-primary">
-            WorkForce-Management
+          Turnaround Chaser
           </span>
         </Link>
 

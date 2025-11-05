@@ -35,7 +35,7 @@ export default function FeaturesSection() {
         <div className="text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground">Why Choose Our Platform?</h2>
           <p className="text-muted-foreground mt-2 text-base md:text-lg max-w-2xl mx-auto">
-            Simplifying job hiring and workforce management for the construction industry.
+            Simplifying job hiring and Turnaround Chaser for the construction industry.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
